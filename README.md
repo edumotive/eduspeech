@@ -9,8 +9,8 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-![build](https://img.shields.io/github/workflow/status/edumotive/edumotive/Java%20CI%20with%20Gradle)
-![commit activity (dev)](https://img.shields.io/github/commit-activity/w/edumotive/edumotive/dev)
+![build](https://img.shields.io/github/workflow/status/edumotive/eduspeech/Java%20CI%20with%20Gradle)
+![commit activity (dev)](https://img.shields.io/github/commit-activity/w/edumotive/eduspeech/dev)
 
 <!-- PROJECT LOGO -->
 <br />
@@ -19,7 +19,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">EduMotive</h3>
+<h3 align="center">EduSpeech</h3>
 </div>
 
 
@@ -51,8 +51,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-
-[![Product Name Screen Shot][product-screenshot]](https://github.com/edumotive/edumotive)
 
 The idea of this project is to create an application that helps automotive students learn their profession in an innovative way that could help them learn from home as well instead of only at the workshop(s) on campus.The way we want to innovate the learning experience is by using tools like augmented reality so we can visualise what should be learnt and broaden the view a student would get from just a textbook.
 
@@ -122,7 +120,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Developers:
  - Danny: [403221@student.fontys.nl](mailto:403221@student.fontys.nl)
- - Jorrit: [390898@student.fontys.nl](mailto:390898@student.fontys.nl)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
