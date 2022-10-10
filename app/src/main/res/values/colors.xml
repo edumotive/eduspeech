@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="text_primary">#FF000000</color>
-    <color name="text_secondary">#FFAFAFAF</color>
+    <color name="text_secondary">#FF004A7D</color>
     <color name="background">#FFFFFFFF</color>
-    <color name="pink_primary">#FFEB0E61</color>
-    <color name="pink_secondary">#FFFCDBE7</color>
+    <color name="app_primary">#FF0099FF</color>
+    <color name="app_secondary">#FFE1F3FF</color>
     <color name="blue_primary">#FF2B2362</color>
     <color name="blue_secondary">#FF9591B0</color>
 </resources>
