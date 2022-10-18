@@ -36,6 +36,7 @@ open class Contentful(
                         .fetch(CDAEntry::class.java)
                         .withContentType("model")
                         .where("locale", locale)
+                        .where("metadata.tags.sys.id" + "[in]", parameterFromBuildConfig().studyTag)
                         .all()
                         .items()
                         .map {
@@ -69,6 +70,7 @@ open class Contentful(
                         .fetch(CDAEntry::class.java)
                         .withContentType("modelGroup")
                         .where("locale", locale)
+                        .where("metadata.tags.sys.id" + "[in]", parameterFromBuildConfig().studyTag)
                         .all()
                         .items()
                         .map {
@@ -103,6 +105,7 @@ open class Contentful(
                         .fetch(CDAEntry::class.java)
                         .withContentType("exercise")
                         .where("locale", locale)
+                        .where("metadata.tags.sys.id" + "[in]", parameterFromBuildConfig().studyTag)
                         .all()
                         .items()
                         .map {
@@ -137,6 +140,7 @@ open class Contentful(
                         .fetch(CDAEntry::class.java)
                         .withContentType("exerciseManual")
                         .where("locale", locale)
+                        .where("metadata.tags.sys.id" + "[in]", parameterFromBuildConfig().studyTag)
                         .include(4)
                         .all()
                         .items()
@@ -172,6 +176,7 @@ open class Contentful(
                         .fetch(CDAEntry::class.java)
                         .withContentType("exerciseAssemble")
                         .where("locale", locale)
+                        .where("metadata.tags.sys.id" + "[in]", parameterFromBuildConfig().studyTag)
                         .include(4)
                         .all()
                         .items()
@@ -207,6 +212,7 @@ open class Contentful(
                         .fetch(CDAEntry::class.java)
                         .withContentType("exerciseRecognition")
                         .where("locale", locale)
+                        .where("metadata.tags.sys.id" + "[in]", parameterFromBuildConfig().studyTag)
                         .include(4)
                         .all()
                         .items()
