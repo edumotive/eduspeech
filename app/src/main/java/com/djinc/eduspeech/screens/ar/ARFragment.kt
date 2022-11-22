@@ -2,6 +2,8 @@ package com.djinc.eduspeech.screens.ar
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.djinc.eduspeech.MainEdumotive
 import com.djinc.eduspeech.R
 import com.djinc.eduspeech.components.modals.ExerciseCompleteModal
 import com.djinc.eduspeech.constants.ContentfulContentModel
@@ -29,10 +32,11 @@ import io.github.sceneview.ar.node.CursorNode
 import io.github.sceneview.math.Rotation
 import io.github.sceneview.math.Scale
 import io.github.sceneview.utils.doOnApplyWindowInsets
+import java.util.*
 import kotlin.math.floor
 
 
-class ARFragment : Fragment(R.layout.fragment_ar) {
+class ARFragment : Fragment(R.layout.fragment_ar), TextToSpeech.OnInitListener {
     /// Views
     private lateinit var sceneView: ArSceneView
     private lateinit var loadingView: View
@@ -40,6 +44,7 @@ class ARFragment : Fragment(R.layout.fragment_ar) {
     private lateinit var planeSelectorTextView: ComposeView
     private lateinit var drawerView: ComposeView
     private lateinit var backButton: ComposeView
+    private lateinit var listenButton: ComposeView
     private lateinit var nextButton: ComposeView
     private lateinit var exerciseCompleteModal: ComposeView
 
@@ -61,6 +66,8 @@ class ARFragment : Fragment(R.layout.fragment_ar) {
     private var hasAnswered = mutableStateOf(false)
     private var falseAnswers = mutableStateOf(0)
 
+    /// TextToSpeech
+    private lateinit var tts: TextToSpeech
 
     private var isLoading = true
         set(value) {
@@ -76,7 +83,10 @@ class ARFragment : Fragment(R.layout.fragment_ar) {
             currentId = params.getString("id")!!
         }
 
+        tts = TextToSpeech(requireContext(), this)
+
         backButton = view.findViewById(R.id.backButton)
+        listenButton = view.findViewById(R.id.listenButton)
         nextButton = view.findViewById(R.id.nextButton)
         drawerView = view.findViewById(R.id.partDrawer)
         exerciseCompleteModal = view.findViewById(R.id.exerciseCompleteModal)
@@ -96,7 +106,7 @@ class ARFragment : Fragment(R.layout.fragment_ar) {
                         anchorOrMove(it)
                     }
 
-                    if (currentType != ContentfulContentModel.EXERCISEMANUAL.stringValue) loadPartDrawer() else loadNextButon()
+                    if (currentType != ContentfulContentModel.EXERCISEMANUAL.stringValue) loadPartDrawer() else loadNextButton()
                 }
             }
             isGone = false
@@ -129,13 +139,24 @@ class ARFragment : Fragment(R.layout.fragment_ar) {
                     if (params != null) {
                         anchorOrMove(it)
                     }
-                    if (currentType != ContentfulContentModel.EXERCISEMANUAL.stringValue) loadPartDrawer() else loadNextButon()
+                    if (currentType != ContentfulContentModel.EXERCISEMANUAL.stringValue) loadPartDrawer() else loadNextButton()
                 }
             }
 
             onArFrame = { arFrame ->
                 if (arFrame.session.planeFindingEnabled && arFrame.session.hasTrackedPlane && !planeSelectorTextView.isGone) {
                     planeSelectorTextView.isGone = true
+
+                    listenButton.setContent {
+                        ListenButton {
+                            val text =
+                                if (currentType == ContentfulContentModel.EXERCISERECOGNITION.stringValue)
+                                    steps[currentStep.value].title
+                                else
+                                    models[selectedModelIndex.value].title
+                            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
+                        }
+                    }
                 }
 
                 if (arFrame.session.planeFindingEnabled && !arFrame.session.hasTrackedPlane) {
@@ -166,6 +187,17 @@ class ARFragment : Fragment(R.layout.fragment_ar) {
         }
     }
 
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            // set US English as language for tts
+            val result = tts.setLanguage(Locale(MainEdumotive.currentLocale))
+
+            if (result != TextToSpeech.LANG_MISSING_DATA
+                && result != TextToSpeech.LANG_NOT_SUPPORTED) listenButton.isEnabled = true
+        }
+    }
+
     private fun transformCard() {
         if (isModelSelected.value) {
             models.forEach { model ->
@@ -189,7 +221,7 @@ class ARFragment : Fragment(R.layout.fragment_ar) {
         }
     }
 
-    private fun loadNextButon() {
+    private fun loadNextButton() {
         if (!buttonLoaded.value) {
             buttonLoaded.value = true
             nextButton.setContent {
