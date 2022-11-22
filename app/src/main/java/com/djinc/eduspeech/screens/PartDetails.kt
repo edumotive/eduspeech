@@ -60,9 +60,19 @@ fun PartDetails(
             try {
                 Contentful().fetchLinkedModelGroupById(partId, errorCallBack = ::errorCatch) {
                     linkedModelGroup.value = it
+                    if(it.isEmpty()) {
+                        return@fetchLinkedModelGroupById
+                    }
                     isLinkedModelGroupLoaded.value = true
                     activeModel.value = it[0].models.find { model -> model.id == partId }!!
                     isActiveModelLoaded.value = true
+                }
+
+                if(!isActiveModelLoaded.value) {
+                    Contentful().fetchModelByID(partId, errorCallBack = ::errorCatch) {
+                        activeModel.value = it
+                        isActiveModelLoaded.value = true
+                    }
                 }
             } catch (e: Exception) {
                 Contentful().fetchModelByID(partId, errorCallBack = ::errorCatch) {
