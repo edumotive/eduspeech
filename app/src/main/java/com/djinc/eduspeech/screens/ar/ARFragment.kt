@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.djinc.eduspeech.MainEdumotive
@@ -195,6 +196,7 @@ class ARFragment : Fragment(R.layout.fragment_ar), TextToSpeech.OnInitListener {
 
             if (result != TextToSpeech.LANG_MISSING_DATA
                 && result != TextToSpeech.LANG_NOT_SUPPORTED) listenButton.isEnabled = true
+            else listenButton.isVisible = false
         }
     }
 
