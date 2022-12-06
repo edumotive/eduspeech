@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Edumotive</string>
+    <string name="app_name">Eduspeech</string>
     <string name="place_object">Place at target</string>
     <string name="move_object">Move to target</string>
     <string name="welcome">Welcome!</string>
-    <string name="recent_updated">Recent updated parts</string>
+    <string name="recent_updated">Recent updated models</string>
     <string name="exercises_this_chapter">Exercises for this chapter</string>
     <string name="exercise_info">What you learn in this exercise</string>
     <string name="exercises">Exercises</string>
@@ -11,10 +11,10 @@
     <string name="corresponding_parts">Corresponding parts</string>
     <string name="open_ar">Open in AR</string>
     <string name="see_in_augmented_reality">See in Augmented Reality</string>
-    <string name="parts">Parts</string>
+    <string name="parts">Models</string>
     <string name="dashboard">Dashboard</string>
     <string name="exercise">Exercise</string>
-    <string name="part">Part</string>
+    <string name="part">Model</string>
     <string name="more_info">More info</string>
     <string name="preference_file_key" translatable="false">EduMotiveKey</string>
     <string name="locale" translatable="false">locale</string>
@@ -23,17 +23,17 @@
     <string name="choose_language">Choose preferred language</string>
     <string name="loading">Loading</string>
     <string name="loading_models">Loading models</string>
-    <string name="parts_drawer_long">Corresponding parts</string>
-    <string name="parts_drawer_short">Parts</string>
-    <string name="search_placeholder">Engine, sparkplug...</string>
+    <string name="parts_drawer_long">Corresponding models</string>
+    <string name="parts_drawer_short">Models</string>
+    <string name="search_placeholder">Food, supplies...</string>
     <string name="search_no_results">Sorry, we could not find what you were looking for</string>
     <string name="cannot_find_plane">Move around to find a plane</string>
     <string name="exercise_type_assemble">Assembling</string>
     <string name="exercise_type_assemble_info">In this type of exercise you will work on assembling and disassembling a part. The idea is to put the given list of parts in the right order so that it is assembled in the correct way.</string>
     <string name="exercise_type_manual">Manual</string>
     <string name="exercise_type_manual_info">This type of exercise involves explaining how a component works. This is done on a step by step basis allowing you to set your own pace.</string>
-    <string name="exercise_type_recognition">Recognition</string>
-    <string name="exercise_type_recognition_info">In this type of exercise, as the name implies, you are going to try to recognize what a part looks like. You will be shown a model or image and need to give the correct naming.</string>
+    <string name="exercise_type_recognition">Vocabulary</string>
+    <string name="exercise_type_recognition_info">In this type of exercise, as the name implies, you are going to try to recognize what a model looks like. You will be shown a model or image and need to give the correct naming.</string>
     <string name="exercise_start_title">Starting the exercise</string>
     <string name="exercise_start_only_ar">This exercise can only be performed with Augmented Reality.</string>
     <string name="exercise_start_both">This exercise can be performed with or without the use of Augmented Reality.</string>
@@ -50,4 +50,5 @@
     <string name="place_in_correct_order">Place in the correct order</string>
     <string name="manual_exercises">Manual exercises</string>
     <string name="choose_correct_part">Choose the correct part</string>
+    <string name="listen">Listen</string>
 </resources>

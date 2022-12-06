@@ -59,10 +59,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:indeterminate="true"
-            app:indicatorColor="@color/pink_primary"
+            app:indicatorColor="@color/app_primary"
             app:indicatorSize="64dp"
             app:trackColor="#3FFFFFFF" />
     </FrameLayout>
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/listenButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.compose.ui.platform.ComposeView
         android:id="@+id/backButton"
